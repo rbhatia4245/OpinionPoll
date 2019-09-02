@@ -3,6 +3,8 @@ A web application where for a list of questions visitors select their best prefe
 
 # Application Flow
 Entry page displays a form containing list of all the questions. Users answer all of the questions. At the end users enter their names and email address to map an answer to a user. After clicking submit a new page is displayed which contains results in the form of text and bar graph.
+To directly view the results type /getResults at the end of host URL.
+Take a view at the screenshots of the application here: https://docs.google.com/document/d/1GVdew5hTuBQhXGAaFv3EQxmT2hk-6TNQoQdt_NBYUmc/edit?usp=sharing.
 
 # Requiredments
 An IDE that supports maven.(probably eclipse/IntelliJ)
