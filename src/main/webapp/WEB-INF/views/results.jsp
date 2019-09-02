@@ -23,38 +23,49 @@
         for(Question question:questionList) {
             int id=question.getId();
             int numberOfAnswers=answerDao.getAnswerCount(id);
-            int optionOneCount=answerDao.getAnswerCount(id,question.getOptionOne());
-            int optionTwoCount=answerDao.getAnswerCount(id,question.getOptionTwo());
-            int optionThreeCount=answerDao.getAnswerCount(id,question.getOptionThree());
-            int optionFourCount=answerDao.getAnswerCount(id,question.getOptionFour());
-            int optionOnePercent = (optionOneCount*100/numberOfAnswers);
-            int optionTwoPercent = (optionTwoCount*100/numberOfAnswers);
-            int optionThreePercent = (optionThreeCount*100/numberOfAnswers);
-            int optionFourPercent = (optionFourCount*100/numberOfAnswers);
+            int[] optionCount = new int[4];
+            int max=Integer.MIN_VALUE;
+            optionCount[0]=answerDao.getAnswerCount(id,question.getOptionOne());
+            if(optionCount[0]>max)
+                max=optionCount[0];
+            optionCount[1]=answerDao.getAnswerCount(id,question.getOptionTwo());
+            if(optionCount[1]>max)
+                max=optionCount[1];
+            optionCount[2]=answerDao.getAnswerCount(id,question.getOptionThree());
+            if(optionCount[2]>max)
+                max=optionCount[2];
+            optionCount[3]=answerDao.getAnswerCount(id,question.getOptionFour());
+            if(optionCount[3]>max)
+                max=optionCount[3];
+            int[] optionPercent= new int[4];
+            optionPercent[0] = (optionCount[0]*100/numberOfAnswers);
+            optionPercent[1] = (optionCount[1]*100/numberOfAnswers);
+            optionPercent[2] = (optionCount[2]*100/numberOfAnswers);
+            optionPercent[3] = (optionCount[3]*100/numberOfAnswers);
     %>
     <label><b>Q.<%=question.getFullQuestion()%></b></label>
     <div>
         <label>Total answers:<%=answerDao.getAnswerCount(id)%></label>
     </div>
     <div>
-        <label><b><i>A.</i></b><%=question.getOptionOne()%>:<%=optionOneCount%></label>
-        <label><b><i>B.</i></b><%=question.getOptionTwo()%>:<%=optionTwoCount%></label>
-        <label><b><i>C.</i></b><%=question.getOptionThree()%>:<%=optionThreeCount%></label>
-        <label><b><i>D.</i></b><%=question.getOptionFour()%>:<%=optionFourCount%></label>
+        <label <%if(optionCount[0]==max){%> style="color:#19aea5"<%}%>><b><i>A.</i></b><%=question.getOptionOne()%>:<%=optionCount[0]%></label>
+        <label <%if(optionCount[1]==max){%> style="color:#19aea5" <%}%>><b><i>B.</i></b><%=question.getOptionTwo()%>:<%=optionCount[1]%></label>
+        <label <%if(optionCount[2]==max){%> style="color:#19aea5" <%}%>><b><i>C.</i></b><%=question.getOptionThree()%>:<%=optionCount[2]%></label>
+        <label <%if(optionCount[3]==max){%> style="color:#19aea5" <%}%>><b><i>D.</i></b><%=question.getOptionFour()%>:<%=optionCount[3]%></label>
     </div>
     <div class="question">
         <div class="chart">
-            <%if(optionOnePercent!=0){%>
-            <div class="option" style="grid-row-start:<%=100-optionOnePercent+1%>;grid-row-end:101;grid-column: 1"><label>A&#x0028;<%=optionOnePercent%>&#x0025;&#x0029;</label></div>
+            <%if(optionPercent[0]!=0){%>
+            <div class="option" style="grid-row-start:<%=100-optionPercent[0]+1%>;grid-row-end:101;grid-column: 1"><label>A&#x0028;<%=optionPercent[0]%>&#x0025;&#x0029;</label></div>
             <%}%>
-            <%if(optionTwoPercent!=0){%>
-            <div class="option" style="grid-row-start:<%=100-optionTwoPercent+1%>;grid-row-end:101;grid-column: 2"><label>B&#x0028;<%=optionTwoPercent%>&#x0025;&#x0029;</label></div>
+            <%if(optionPercent[1]!=0){%>
+            <div class="option" style="grid-row-start:<%=100-optionPercent[1]+1%>;grid-row-end:101;grid-column: 2"><label>B&#x0028;<%=optionPercent[1]%>&#x0025;&#x0029;</label></div>
             <%}%>
-            <%if(optionThreePercent!=0){%>
-            <div class="option" style="grid-row-start:<%=100-optionThreePercent+1%>;grid-row-end:101;grid-column: 3"><label>C&#x0028;<%=optionThreePercent%>&#x0025;&#x0029;</label></div>
+            <%if(optionPercent[2]!=0){%>
+            <div class="option" style="grid-row-start:<%=100-optionPercent[2]+1%>;grid-row-end:101;grid-column: 3"><label>C&#x0028;<%=optionPercent[2]%>&#x0025;&#x0029;</label></div>
             <%}%>
-            <%if(optionFourPercent!=0){%>
-            <div class="option" style="grid-row-start:<%=100-optionFourPercent+1%>;grid-row-end:101;grid-column: 4"><label>D&#x0028;<%=optionFourPercent%>&#x0025;&#x0029;</label></div>
+            <%if(optionPercent[3]!=0){%>
+            <div class="option" style="grid-row-start:<%=100-optionPercent[3]+1%>;grid-row-end:101;grid-column: 4"><label>D&#x0028;<%=optionPercent[3]%>&#x0025;&#x0029;</label></div>
             <%}%>
         </div>
     </div>

@@ -1,9 +1,5 @@
-import dao.AnswerDao;
 import dao.UserDao;
-import models.Answer;
-import models.Question;
 import models.User;
-import utilities.Unanswered;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,10 +7,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.lang.reflect.Parameter;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 @WebServlet(urlPatterns = "/getUser")
 public class RegisterServlet extends HttpServlet {
