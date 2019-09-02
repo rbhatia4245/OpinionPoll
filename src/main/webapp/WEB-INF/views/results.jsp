@@ -2,7 +2,8 @@
 <style><%@include file="/WEB-INF/views/results.css"%></style>
 <%@ page import="models.Question" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="dao.AnswerDao" %><%--
+<%@ page import="dao.AnswerDao" %>
+<%@ page import="java.util.Arrays" %><%--
   Created by IntelliJ IDEA.
   User: rishi
   Date: 01-Sep-19
@@ -38,10 +39,13 @@
             if(optionCount[3]>max)
                 max=optionCount[3];
             int[] optionPercent= new int[4];
-            optionPercent[0] = (optionCount[0]*100/numberOfAnswers);
-            optionPercent[1] = (optionCount[1]*100/numberOfAnswers);
-            optionPercent[2] = (optionCount[2]*100/numberOfAnswers);
-            optionPercent[3] = (optionCount[3]*100/numberOfAnswers);
+            Arrays.fill(optionPercent,0);
+            if(numberOfAnswers!=0) {
+                optionPercent[0] = (optionCount[0] * 100 / numberOfAnswers);
+                optionPercent[1] = (optionCount[1] * 100 / numberOfAnswers);
+                optionPercent[2] = (optionCount[2] * 100 / numberOfAnswers);
+                optionPercent[3] = (optionCount[3] * 100 / numberOfAnswers);
+            }
     %>
     <label><b>Q.<%=question.getFullQuestion()%></b></label>
     <div>
