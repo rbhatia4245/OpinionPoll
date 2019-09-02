@@ -20,4 +20,4 @@ MySQL(change the mysql connector dependeny according to the mysql version in pom
 5. If you are using IntelliJ import the project.
   a. Create a new run configuration and in command line enter tomcat7:run.
   
-Screenshots are attatched in the wiki with explaination about the database schema.
+
