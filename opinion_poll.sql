@@ -5,7 +5,7 @@ use opinion_poll;
 Create Table user(
 id int unique not null auto_increment,
 name varchar(32),
-emai varchar(32) unique not null
+email varchar(32) unique not null
 );
 
 Create Table questions(
